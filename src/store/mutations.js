@@ -6,7 +6,6 @@ export const Data_Updated = (state, data) => {
        console.log("goruuuuuuuu");
        if (it._id == citem.product._id) {
          it.check = true;
-         console.log("PPPPPPPPPPPPPPPPPPPPPP");
        }
      });
 
@@ -29,17 +28,15 @@ export const Show_Product = (state, data) => {
 };
 
 export const Update_cart = (state, { product, quantity,ck }) => {
-  console.log("quant", quantity);
+  
   let test = 1;
   //let index=state.products.indexOf(product);
   
   product.check=true;
   if(ck==false)
   ck=true;
-  state.products.map(it=>{
-    console.log(it);
-  });
-  console.log(product,"Hiiiiiiiiiiiiiiiiiiiiiiiiii");
+  
+  
   state.cart.map((item) => {
     if (item.product._id === product._id) {
       test++;
@@ -62,8 +59,6 @@ export const Update_cart = (state, { product, quantity,ck }) => {
 
 export const Set_cart = (state, cartItem) => {
   state.cart = cartItem;
-  console.log("BROOOOOOO");
-  console.log(state.products.length,"Hhhhhhhh");
   
   
 };
@@ -72,18 +67,21 @@ export const Remove_Item = (state, item) => {
   console.log(state.cart);
   var n = state.cart.indexOf(item);
   state.cart.splice(n, 1);
-  console.log(item);
-  item.product.check=false;
-  localStorage.setItem("cartItem", JSON.stringify(state.cart));
-  for (let it of state.cart) {
-    console.log("yeap00000000000000", it);
+  //item.product.check=false;
+  for (let it of state.products) {
+  if(it._id === item.product._id){
+    it.check=false;
   }
+  }
+  localStorage.setItem("cartItem", JSON.stringify(state.cart));
+  
 };
 
 export const Clear_Item=(state)=>{
-  state.cart.map(it=>{
-    it.product.check=false;
-  });
+  
+  state.products.map(it=>{
+    it.check=false;
+  })
   state.cart=[];
   localStorage.removeItem("cartItem");
 }
