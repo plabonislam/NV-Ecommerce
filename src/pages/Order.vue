@@ -138,6 +138,9 @@ export default {
       let p = localStorage.getItem("cartItem");
         console.log(this.formData,"formData");
       this.errors = [];
+      if(this.info==='disabled'){
+        return;
+      }
       this.info='disabled';
 
       if (this.cartItemcount < 1) {
@@ -170,7 +173,7 @@ export default {
         alert("Order Failed");
         return;
       }
-       localStorage.removeItem("cartItem");
+      // localStorage.removeItem("cartItem");
 
 
       axios
