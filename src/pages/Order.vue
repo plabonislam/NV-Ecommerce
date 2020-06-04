@@ -171,7 +171,7 @@ export default {
         return;
       }
        localStorage.removeItem("cartItem");
-       
+
 
       axios
         .post("http://127.0.0.1:3000/orders", {
@@ -192,7 +192,8 @@ export default {
           this.email="";
           this.city="";
           this.postalCode="";
-          localStorage.removeItem("cartItem");
+          //localStorage.removeItem("cartItem");
+            this.$store.dispatch("clearCart");
         })
         .catch(err => {
           console.log(err);
