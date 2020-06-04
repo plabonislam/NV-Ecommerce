@@ -6,6 +6,5 @@
      state.cart.map(item=>{
          price+=item.quantity * item.product.price;
      });
-     console.log("TOTAL",price);
      return price;
     }

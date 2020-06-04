@@ -1,7 +1,7 @@
 <template>
 <div class="d-flex align-items-stretch flex-wrap">
   
-<productCart v-for="item in products" :key="item._id" :item="item" :ck="item.check" />
+<productCart v-for="item in products" :key="item._id" :item="item" />
 
 
 </div>
@@ -17,7 +17,7 @@ components:{
 },
 computed:{
   products(){
-    console.log(this.$store.state.products);
+
   return this.$store.state.products;
 }
 },

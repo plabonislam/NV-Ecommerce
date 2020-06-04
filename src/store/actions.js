@@ -15,9 +15,9 @@ console.log(response.data);
  })
 
 }
-export const AddProductCart=({commit}, {product,quantity,ck})=>{
+export const AddProductCart=({commit}, {product,quantity})=>{
   console.log(quantity,"yesssssssssspppppppppppppppppppp");
-commit("Update_cart",{product,quantity,ck});
+commit("Update_cart",{product,quantity});
 
 }
 export const getCartItems=({commit},cartItem)=>{

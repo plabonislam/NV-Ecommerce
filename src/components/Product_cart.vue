@@ -26,12 +26,13 @@
         </div>
         <div class="card-body">
           <h5 class="card-title">
+            
             {{
                 item.name.length > 17
                   ? item.name.substring(0, 17) + "..."
                   : item.name || NULL
               }}
-          </h5>
+          </h5> 
 
 
 
@@ -46,7 +47,7 @@
                   : item.name || NULL
               }}</router-link
             >
-          </h5> -->
+          </h5>  -->
 
           <p>Price ${{ item.price || NULL }}</p>
           <p>
@@ -55,7 +56,7 @@
               href="#"
               style="backgroundColor:#5f2b2c;float:right;padding:6px;borderRadius:30%"
               @click.prevent="addTocart()"
-              v-if="!ck"
+              v-if="!item.check"
             >
               <font-awesome-icon style="color:#ffffff80" :icon="['fas', 'cart-plus']" />
             </a>
@@ -63,7 +64,7 @@
               href="#"
               style="backgroundColor:#5f2b2c;float:right;padding:6px;borderRadius:30%"
               @click.prevent="addTocart()"
-              v-if="ck"
+              v-if="item.check"
             >
               <font-awesome-icon
                 style="color:#ffffff80"
@@ -80,17 +81,15 @@
 <script>
 export default {
   props: {
-    item: Object,
-    ck: Boolean,
+    item: Object
   },
   methods: {
     addTocart() {
-      console.log(this.ck);
+    
 
       this.$store.dispatch("AddProductCart", {
         product: this.item,
         quantity: 1,
-        ck: this.ck,
       });
     },
   },

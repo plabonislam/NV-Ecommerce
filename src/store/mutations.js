@@ -20,22 +20,36 @@ export const Data_Updated = (state, data) => {
 export const Show_Product = (state, data) => {
   state.product = data;
   state.product.check=false;
-  state.products.map(it=>{
-    if(it._id === data._id){
-        state.product.check= it.check;
+  
+  console.log("YOU are here Again",data);
+  state.cart.map(it=>{
+    console.log("MY man");
+    if(it.product._id === data._id){
+        state.product.check= it.product.check;
+        
+        console.log("NOT Again");
     }
   })
 };
 
-export const Update_cart = (state, { product, quantity,ck }) => {
+export const Update_cart = (state, { product, quantity}) => {
   
   let test = 1;
-  //let index=state.products.indexOf(product);
-  
-  product.check=true;
-  if(ck==false)
-  ck=true;
-  
+
+
+  //console.log(product.check=true);
+    // state.product.check=true;
+  //  // state.product.check=true;
+  //   if(ck==false)
+  //      ck=true;
+
+  state.products.map((it) => {
+    if (it._id === product._id) {
+      it.check = true;
+      console.log("BOSSSSSSSSSSSSSSSSSSSSS");
+    }
+  });
+  console.log(state.product);
   
   state.cart.map((item) => {
     if (item.product._id === product._id) {
@@ -66,8 +80,10 @@ export const Set_cart = (state, cartItem) => {
 export const Remove_Item = (state, item) => {
   console.log(state.cart);
   var n = state.cart.indexOf(item);
+  console.log(n,"remove Me");
   state.cart.splice(n, 1);
-  //item.product.check=false;
+  item.product.check=false;
+//  state.product.check = false;
   for (let it of state.products) {
   if(it._id === item.product._id){
     it.check=false;

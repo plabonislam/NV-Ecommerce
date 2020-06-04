@@ -114,7 +114,7 @@ return{
   },
   mounted() {
     if (localStorage.getItem("cartItem")) {
-      console.log("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
+      console.log("yeeeeeeeeeeeeeeeeeeeeeeeeeeeeee Min-cart",);
       let p = localStorage.getItem("cartItem");
 
       this.$store.dispatch("getCartItems", JSON.parse(p));

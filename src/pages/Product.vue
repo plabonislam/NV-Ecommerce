@@ -1,22 +1,17 @@
 <template>
-  <div>
-    <div class="row" style="margin:15px;" v-if="product">
-      <div class="col-4">
-        <img :src="product.productImage" class="w-100" />
-      </div>
-      <div class="col-8">
-        <h2>{{ product.name }}</h2>
-        <p>price $ {{product.price}}</p>
-        <h6> <strong>Quantity </strong> {{product.quantity}}</h6>
-
-      </div>
-    </div>
+  <div v-if="product">
+    <prductShow  :product="product" :ck="product.check" />
   </div>
 </template>
 
 <script>
+import prductShow from "../components/productShow.vue";
 export default {
   props: ["id"],
+  components: {
+  prductShow
+  },
+  
   computed: {
     product() {
       return this.$store.state.product;
@@ -24,15 +19,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("getProduct", this.id);
-  },
-  methods: {
-    addTocart() {
-      this.$store.dispatch("AddProductCart", {
-        product: this.product,
-        quantity: 1,
-        ck:this.product.check,
-      });
-    }
+    //  this.checkItem();
   }
 };
 </script>

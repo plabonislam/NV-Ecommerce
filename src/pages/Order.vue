@@ -3,7 +3,7 @@
     <div class="container" style="padding-top:100px;">
 
             <h2 style="text-align:center; padding-bottom:40px;">Order Infromation </h2>
-      <form @submit="submitFrom">
+      <form @submit.prevent="submitFrom">
 
         <p v-if="errors.length">
     
@@ -124,7 +124,8 @@ export default {
       email: "",
       city: "",
       postalCode: "",
-      info:''
+      info:'',
+      formData:new FormData(),
     };
   },
   computed: {
@@ -135,7 +136,7 @@ export default {
   methods: {
     submitFrom() {
       let p = localStorage.getItem("cartItem");
-
+        console.log(this.formData,"formData");
       this.errors = [];
       this.info='disabled';
 
@@ -169,6 +170,8 @@ export default {
         alert("Order Failed");
         return;
       }
+       localStorage.removeItem("cartItem");
+       
 
       axios
         .post("http://127.0.0.1:3000/orders", {
@@ -183,6 +186,12 @@ export default {
           console.log(response);
 
           alert("Order Submitted");
+         
+          this.userName="";
+          this.contact="";
+          this.email="";
+          this.city="";
+          this.postalCode="";
           localStorage.removeItem("cartItem");
         })
         .catch(err => {
