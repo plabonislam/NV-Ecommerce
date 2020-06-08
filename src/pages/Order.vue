@@ -135,12 +135,13 @@ export default {
   },
   methods: {
     submitFrom() {
-      let p = localStorage.getItem("cartItem");
-        console.log(this.formData,"formData");
-      this.errors = [];
       if(this.info==='disabled'){
         return;
       }
+      let p = localStorage.getItem("cartItem");
+        console.log(this.formData,"formData");
+      this.errors = [];
+      
       this.info='disabled';
 
       if (this.cartItemcount < 1) {

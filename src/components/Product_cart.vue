@@ -25,18 +25,18 @@
           </div>
         </div>
         <div class="card-body">
-          <h5 class="card-title">
+          <!-- <h5 class="card-title">
             
             {{
                 item.name.length > 17
                   ? item.name.substring(0, 17) + "..."
                   : item.name || NULL
               }}
-          </h5> 
+          </h5>  -->
 
 
 
-<!-- 
+
           <h5 class="card-title">
             <router-link
               :to="{ name: 'product', params: { id: item._id } }"
@@ -47,7 +47,7 @@
                   : item.name || NULL
               }}</router-link
             >
-          </h5>  -->
+          </h5>  
 
           <p>Price ${{ item.price || NULL }}</p>
           <p>
@@ -90,6 +90,7 @@ export default {
       this.$store.dispatch("AddProductCart", {
         product: this.item,
         quantity: 1,
+        call:"products"
       });
     },
   },
